@@ -1,5 +1,6 @@
 package com.arc.universidades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -26,9 +27,17 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
     }
 
     private fun initRecyclerView() {
-        adapter = UniAdapter(infoUni)
+        adapter = UniAdapter(infoUni, this)
         binding.rvUni.layoutManager = LinearLayoutManager(this)
         binding.rvUni.adapter = adapter
+    }
+
+    // Implementa la interfaz ItemClickListener
+    fun onItemClick(universidad: Universidad) {
+        // Abre la actividad DatosUniversidadActivity y pasa la información de la universidad
+        val intent = Intent(this, DatosUniversidad::class.java)
+        intent.putExtra("universidad", universidad)
+        startActivity(intent)
     }
 
     private fun getRetrofit():Retrofit{

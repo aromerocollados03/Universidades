@@ -1,0 +1,44 @@
+<!-- activity_datos_universidad.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvNombreUniversidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la Universidad" />
+
+    <TextView
+        android:id="@+id/tvPais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="País" />
+
+    <TextView
+        android:id="@+id/tvEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado" />
+
+    <TextView
+        android:id="@+id/tvAlphaCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alpha Code" />
+
+    <TextView
+        android:id="@+id/tvWebPages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Páginas Web" />
+
+    <TextView
+        android:id="@+id/tvDominios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dominios" />
+
+</LinearLayout>

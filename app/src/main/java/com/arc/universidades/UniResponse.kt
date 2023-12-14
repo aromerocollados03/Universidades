@@ -1,14 +1,15 @@
 package com.arc.universidades
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class UniResponse(@SerializedName("message") var message: List<Universidad>)
+data class UniResponse(@SerializedName("universidades") var universidades: List<Universidad>)
 
 data class Universidad(
     var name: String,
     var country: String,
-    var stateProvince: String?,
-    var alphaCode: String,
-    var webPages: List<String>,
+    @SerializedName("state-province")var stateProvince: String?,
+    @SerializedName("alpha_two_code")var alphaCode: String,
+    @SerializedName("web_pages") var webPages: List<String>,
     var domains: List<String>
-)
+) : Serializable
