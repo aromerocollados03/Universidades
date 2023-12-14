@@ -5,17 +5,34 @@
     android:id="@+id/viewRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333333"
     tools:context="com.arc.universidades.MainActivity">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UNIVERSIDADES EN ESPAÑA"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"/>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/svUni"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/rvUni"
+        android:layout_marginTop="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUni"

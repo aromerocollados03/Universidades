@@ -13,8 +13,7 @@ class UniViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val pagWebText = if (universidad.webPages.isNullOrEmpty()) "N/A" else formatList(universidad.webPages)
         val dominioText = if (universidad.domains.isNullOrEmpty()) "N/A" else formatList(universidad.domains)
 
-        binding.txUni.text = "Nombre: ${universidad.name}\n" +
-                "Dominios: $dominioText"
+        binding.txUni.text = "${universidad.name}\n"
     }
 
     private fun formatList(list: List<String>): String {
