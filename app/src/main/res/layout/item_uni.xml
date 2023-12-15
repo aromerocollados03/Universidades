@@ -18,7 +18,5 @@
         android:layout_height="wrap_content"
         android:textSize="22dp"
         android:textColor="@color/black"/>
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

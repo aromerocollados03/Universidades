@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         binding.rvUni.adapter = adapter
     }
 
-    // Implementa la interfaz ItemClickListener
     fun onItemClick(universidad: Universidad) {
         // Abre la actividad DatosUniversidadActivity y pasa la información de la universidad
         val intent = Intent(this, DatosUniversidad::class.java)
@@ -49,8 +48,7 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
 
     private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response =
-                getRetrofit().create(APIService::class.java).getUniByName("Spain", query).execute()
+            val response = getRetrofit().create(APIService::class.java).getUniByName("Australia", query).execute()
 
             runOnUiThread {
                 if (response.isSuccessful) {

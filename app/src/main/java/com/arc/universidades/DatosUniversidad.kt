@@ -1,29 +1,38 @@
 package com.arc.universidades
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import com.arc.universidades.databinding.ActivityDatosUniversidadBinding
 
 class DatosUniversidad : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_datos_universidad)
+        val binding = ActivityDatosUniversidadBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Obtén la información de la universidad desde el Intent
         val universidad = intent.getSerializableExtra("universidad") as? Universidad
-        universidad?.let {
-            // Actualiza las vistas con la información de la universidad
-            findViewById<TextView>(R.id.tvNombreUniversidad).text = "Nombre: ${it.name}"
-            findViewById<TextView>(R.id.tvPais).text = "País: ${it.country}"
-            findViewById<TextView>(R.id.tvEstado).text = "Estado: ${it.stateProvince ?: "N/A"}"
-            findViewById<TextView>(R.id.tvAlphaCode).text = "Alpha Code: ${it.alphaCode}"
+        universidad?.let { updateViews(binding, it) }
 
-            val webPagesText = if (it.webPages.isNullOrEmpty()) "N/A" else it.webPages.joinToString(", ")
-            findViewById<TextView>(R.id.tvWebPages).text = "Páginas Web: $webPagesText"
+        binding.btnVolver.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
 
-            val dominiosText = if (it.domains.isNullOrEmpty()) "N/A" else it.domains.joinToString(", ")
-            findViewById<TextView>(R.id.tvDominios).text = "Dominios: $dominiosText"
+    @SuppressLint("SetTextI18n")
+    private fun updateViews(binding: ActivityDatosUniversidadBinding, universidad: Universidad) {
+        with(binding) {
+            tvNombreUniversidad.text = "Nombre: ${universidad.name}"
+            tvPais.text = "País: ${universidad.country}"
+            tvEstado.text = "Estado: ${universidad.stateProvince ?: "N/A"}"
+            tvAlphaCode.text = "Código Alfa: ${universidad.alphaCode}"
+            tvWebPages.text = "Web: ${universidad.webPages.joinToString(", ")}"
+            tvDominios.text = "Dominio: ${universidad.domains.joinToString(", ")}"
         }
     }
 }
+
 

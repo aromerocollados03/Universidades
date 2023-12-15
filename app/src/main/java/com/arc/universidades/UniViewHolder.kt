@@ -1,22 +1,10 @@
 package com.arc.universidades
 
-import android.annotation.SuppressLint
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.arc.universidades.databinding.ItemUniBinding
 
-class UniViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val binding = ItemUniBinding.bind(view)
-
-    @SuppressLint("SetTextI18n")
+class UniViewHolder(private val binding: ItemUniBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(universidad: Universidad) {
-        val pagWebText = if (universidad.webPages.isNullOrEmpty()) "N/A" else universidad.webPages[0]
-        val dominioText = if (universidad.domains.isNullOrEmpty()) "N/A" else formatList(universidad.domains)
-
-        binding.txUni.text = "${universidad.name}"
-    }
-
-    private fun formatList(list: List<String>): String {
-        return list.joinToString(", ") { it }
+        binding.txUni.text = universidad.name
     }
 }

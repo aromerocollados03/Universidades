@@ -1,44 +1,100 @@
-<!-- activity_datos_universidad.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvNombreUniversidad"
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="40dp">
+
+        <LinearLayout android:background="@drawable/background_degradado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvNombreUniversidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_de_la_universidad"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/tvPais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pais"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estado"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/tvAlphaCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alpha_code"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/tvWebPages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/paginas_web"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/tvDominios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dominios"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de la Universidad" />
+        android:text="@string/volver"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_degradado"/>
+</RelativeLayout>
 
-    <TextView
-        android:id="@+id/tvPais"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="País" />
-
-    <TextView
-        android:id="@+id/tvEstado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estado" />
-
-    <TextView
-        android:id="@+id/tvAlphaCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alpha Code" />
-
-    <TextView
-        android:id="@+id/tvWebPages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Páginas Web" />
-
-    <TextView
-        android:id="@+id/tvDominios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dominios" />
-
-</LinearLayout>

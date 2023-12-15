@@ -3,18 +3,14 @@ package com.arc.universidades
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
-
-interface ItemClickListener {
-    fun onItemClick(universidad: Universidad)
-}
+import com.arc.universidades.databinding.ItemUniBinding  // Import the binding class
 
 class UniAdapter(private val universidades: List<Universidad>, private val itemClickListener: MainActivity) :
     RecyclerView.Adapter<UniViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UniViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_uni, parent, false)
-        return UniViewHolder(view)
+        val binding = ItemUniBinding.inflate(layoutInflater, parent, false)
+        return UniViewHolder(binding)
     }
 
     override fun getItemCount(): Int = universidades.size
@@ -27,6 +23,4 @@ class UniAdapter(private val universidades: List<Universidad>, private val itemC
             itemClickListener.onItemClick(item)
         }
     }
-
-
 }
