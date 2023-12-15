@@ -3,7 +3,7 @@ package com.arc.universidades
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.arc.universidades.databinding.ItemUniBinding  // Import the binding class
+import com.arc.universidades.databinding.ItemUniBinding
 
 class UniAdapter(private val universidades: List<Universidad>, private val itemClickListener: MainActivity) :
     RecyclerView.Adapter<UniViewHolder>() {
