@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         setContentView(binding.root)
         binding.svUni.setOnQueryTextListener(this)
         initRecyclerView()
+        loadAllUniversities()
     }
 
     private fun initRecyclerView() {
@@ -48,23 +49,29 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
 
     private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = getRetrofit().create(APIService::class.java).getUniByName("Australia", query).execute()
+            try {
+                val response = getRetrofit().create(APIService::class.java)
+                    .getUniByName("Australia", query).execute()
 
-            runOnUiThread {
-                if (response.isSuccessful) {
-                    val universities = response.body()
-                    universities?.let {
-                        infoUni.clear()
-                        infoUni.addAll(it)
-                        adapter.notifyDataSetChanged()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        val universities = response.body()
+                        universities?.let {
+                            infoUni.clear()
+                            infoUni.addAll(it)
+                            adapter.notifyDataSetChanged()
+                        }
+                    } else {
+                        showError()
                     }
-                } else {
+                }
+
+            } catch (e: Exception) {
+                runOnUiThread {
                     showError()
                 }
             }
-
         }
-
     }
 
     private fun showError() {
@@ -78,8 +85,23 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         return true
     }
 
-
     override fun onQueryTextChange(newText: String?): Boolean {
         return true
+    }
+
+    private fun loadAllUniversities() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = getRetrofit().create(APIService::class.java)
+                .getAllUniversities("Australia").execute()
+
+            runOnUiThread {
+                val universities = response.body()
+                universities?.let {
+                    infoUni.clear()
+                    infoUni.addAll(it)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
     }
 }
