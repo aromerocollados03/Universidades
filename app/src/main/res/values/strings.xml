@@ -7,4 +7,7 @@
     <string name="pais">Pais</string>
     <string name="nombre_de_la_universidad">Nombre de la Universidad</string>
     <string name="volver">Volver</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">LOGIN</string>
 </resources>

@@ -18,12 +18,59 @@
 
     <Button
         android:id="@+id/botonGuardar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Incrementar valor"
+        app:layout_constraintTop_toBottomOf="@id/tvDato"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/botonDecrementar"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/botonDecrementar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Decrementar valor"
+        app:layout_constraintTop_toBottomOf="@id/tvDato"
+        app:layout_constraintStart_toEndOf="@id/botonGuardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp" />
+
+    <Button
+        android:id="@+id/botonResetear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Incrementar y guardar"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Resetear"
+        app:layout_constraintTop_toBottomOf="@id/botonGuardar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDato" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <Switch
+        android:id="@+id/switchTema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Claro"
+        android:textOn="Oscuro"
+        android:text="Modo Oscuro"
+        app:layout_constraintTop_toBottomOf="@id/botonResetear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Spinner
+        android:id="@+id/spinnerColorFavorito"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/switchTema"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
