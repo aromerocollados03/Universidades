@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- styles.xml -->
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/dark_gray</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="ButtonStyleElegant" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/button_background_elegant</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_text_background</item> <!-- Crea un drawable con este nombre para el fondo -->
+        <item name="android:padding">12dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/dark_gray</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/custom_button_bg</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:popupBackground">@color/white</item>
+    </style>
+
+
+</resources>
