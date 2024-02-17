@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -25,6 +29,8 @@ class LoginActivity : AppCompatActivity() {
             AppDatabase::class.java, "midatabase"
         ).build()
     }
+    private lateinit var etPassword: EditText
+    private lateinit var checkBoxShowPassword: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +41,13 @@ class LoginActivity : AppCompatActivity() {
         btnRegistrarse.setOnClickListener {
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)
+        }
+
+        etPassword = findViewById(R.id.etPassword)
+        checkBoxShowPassword = findViewById(R.id.checkBoxShowPassword)
+
+        checkBoxShowPassword.setOnCheckedChangeListener { _, isChecked ->
+            visibilidadContrasena(isChecked)
         }
 
         binding.btnLogin.setOnClickListener {
@@ -69,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val usuario = db.usuarioDao().buscarUsuario(username, password)
             withContext(Dispatchers.Main) {
-                progressDialog.dismiss() // Cierra el diálogo de progreso aquí
+                progressDialog.dismiss()
                 if (usuario != null) {
                     iniciarMenuActivity()
                 } else {
@@ -83,5 +96,13 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun visibilidadContrasena(isChecked: Boolean) {
+        if (isChecked) {
+            etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+        } else {
+            etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+        }
     }
 }

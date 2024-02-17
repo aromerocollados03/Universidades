@@ -28,7 +28,7 @@
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="Usuario"
         android:background="@drawable/edit_text_background"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
@@ -41,7 +41,7 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:background="@drawable/edit_text_background"
         android:inputType="textPassword"
         android:textColor="@color/black"
@@ -49,6 +49,17 @@
         android:maxLines="1"
         android:layout_marginTop="16dp"
         android:padding="12dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxShowPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPassword"
+        android:layout_alignEnd="@id/etPassword"
+        android:layout_marginTop="8dp"
+        android:text="Mostrar contraseña"
+        android:layout_marginEnd="16dp"
+        android:buttonTint="@color/black"/>
 
     <Button
         android:id="@+id/btnLogin"
