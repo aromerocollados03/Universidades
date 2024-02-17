@@ -10,7 +10,7 @@
         android:id="@+id/btnToApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Consultar Universidades de Australia"
+        android:text="Consultar universidades"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"

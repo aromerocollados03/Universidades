@@ -10,4 +10,7 @@ interface APIService {
 
     @GET("search")
     fun getAllUniversities(@Query("country") country: String): Call<List<Universidad>>
+
+    @GET("search")
+    fun getUniversitiesByCountry(@Query("country") country: String): Call<List<Universidad>>
 }

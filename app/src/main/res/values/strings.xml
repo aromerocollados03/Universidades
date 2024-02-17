@@ -10,4 +10,16 @@
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">LOGIN</string>
+
+    <string-array name="paises">
+        <item>Australia</item>
+        <item>United States</item>
+        <item>Spain</item>
+        <item>Argentina</item>
+        <item>Canada</item>
+        <item>United Kingdom</item>
+        <item>China</item>
+        <item>Finland</item>
+    </string-array>
+
 </resources>
