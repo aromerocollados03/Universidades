@@ -15,11 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBJr214_bTO0xVgvvzCT02sKdpmMTZJT8Y"/>
+
         <activity
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:theme="@style/LoginTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

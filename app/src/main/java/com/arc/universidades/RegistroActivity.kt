@@ -15,8 +15,9 @@ class RegistroActivity : AppCompatActivity() {
     private val db by lazy {
         Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "midb"
-        ).build()
+            AppDatabase::class.java, "midatabase"
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,26 +26,36 @@ class RegistroActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnRegistrar.setOnClickListener {
-            val username = binding.etRegistroUsername.text.toString()
-            val password = binding.etRegistroPassword.text.toString()
-            val email = binding.etRegistroEmail.text.toString()
-            registrarUsuario(username, password, email)
+            val username = binding.etRegistroUsername.text.toString().trim()
+            val password = binding.etRegistroPassword.text.toString().trim()
+            val email = binding.etRegistroEmail.text.toString().trim()
+            if (validarCampos(username, password, email)) {
+                registrarUsuario(username, password, email)
+            } else {
+                Toast.makeText(this, "Por favor, rellena todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
+    private fun validarCampos(username: String, password: String, email: String): Boolean {
+        // Aquí puedes añadir más lógica de validación si es necesario
+        return username.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()
+    }
+
     private fun registrarUsuario(username: String, password: String, email: String) {
-        if (username.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()) {
-            CoroutineScope(Dispatchers.IO).launch {
-                val usuario = Usuario(nombre = username, passwd = password, correo = email)
-                db.usuarioDao().insertarUsuario(usuario)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(applicationContext, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show()
-                    finish() // Cierra la actividad y vuelve a la pantalla de login
-                }
+        CoroutineScope(Dispatchers.IO).launch {
+            val usuario = Usuario(nombre = username, passwd = password, correo = email)
+            db.usuarioDao().insertarUsuario(usuario)
+            withContext(Dispatchers.Main) {
+                mostrarMensaje("Usuario registrado con éxito")
+                finish()
             }
-        } else {
-            Toast.makeText(this, "Por favor, rellena todos los campos", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun mostrarMensaje(mensaje: String) {
+        Toast.makeText(applicationContext, mensaje, Toast.LENGTH_SHORT).show()
+    }
 }
+
 

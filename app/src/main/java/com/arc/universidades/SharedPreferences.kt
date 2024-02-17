@@ -44,14 +44,6 @@ class SharedPreferences : AppCompatActivity() {
             modificarValor(0, true)
         }
 
-        // Inicialización y listeners...
-        val switchTema = findViewById<Switch>(R.id.switchTema)
-        switchTema.isChecked = esModoOscuroActivado()
-
-        switchTema.setOnCheckedChangeListener { _, isChecked ->
-            cambiarTema(isChecked)
-        }
-
         spinnerColorFavorito = findViewById(R.id.spinnerColorFavorito)
         inicializarSpinnerColor()
 

@@ -5,8 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.arc.universidades.databinding.ActivityDatosUniversidadBinding
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class DatosUniversidad : AppCompatActivity() {
+class DatosUniversidad : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var mMap: GoogleMap
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,9 +23,18 @@ class DatosUniversidad : AppCompatActivity() {
         val universidad = intent.getSerializableExtra("universidad") as? Universidad
         universidad?.let { updateViews(binding, it) }
 
-        binding.btnVolver.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        val universidad = intent.getSerializableExtra("universidad") as? Universidad
+        universidad?.let {
+            val sydney = LatLng(-34.0, 151.0)
+            mMap.addMarker(MarkerOptions().position(sydney).title("Marcador en Sídney"))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
         }
     }
 

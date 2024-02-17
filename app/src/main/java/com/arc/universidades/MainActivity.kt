@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
     private val apiService: APIService by lazy {
         getRetrofit().create(APIService::class.java)
     }
+    private lateinit var selectedCountry: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
 
         binding.svUni.setOnQueryTextListener(this)
         initRecyclerView()
-        configurarSpinner()
+        configurarSpinnerPaises()
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -50,7 +51,6 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
     }
 
     fun onItemClick(universidad: Universidad) {
-        // Abre la actividad DatosUniversidadActivity y pasa la información de la universidad
         val intent = Intent(this, DatosUniversidad::class.java)
         intent.putExtra("universidad", universidad)
         startActivity(intent)
@@ -72,10 +72,9 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
     private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = getRetrofit().create(APIService::class.java)
-                    .getUniByName("Australia", query).execute()
+                val response = apiService.getUniByName(selectedCountry, query).execute()
 
-                runOnUiThread {
+                withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         val universities = response.body()
                         universities?.let {
@@ -87,14 +86,14 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
                         showError()
                     }
                 }
-
             } catch (e: Exception) {
-                runOnUiThread {
+                withContext(Dispatchers.Main) {
                     showError()
                 }
             }
         }
     }
+
 
     private fun showError() {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
@@ -104,26 +103,6 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
 
     private fun showError(message: String = "Ha ocurrido un error") {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun configurarSpinner() {
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.paises, // Asegúrate de que este array esté definido en tus recursos (res/values/strings.xml)
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.spinnerPaises.adapter = adapter
-        }
-
-        binding.spinnerPaises.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val country = parent.getItemAtPosition(position).toString()
-                cargarUniversidades(country)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
     }
 
     private fun cargarUniversidades(country: String) {
@@ -148,4 +127,22 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
             }
         }
     }
+
+    private fun configurarSpinnerPaises() {
+        val countriesAdapter = ArrayAdapter.createFromResource(
+            this, R.array.paises, android.R.layout.simple_spinner_item
+        )
+        countriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerPaises.adapter = countriesAdapter
+
+        binding.spinnerPaises.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCountry = parent.getItemAtPosition(position) as String
+                cargarUniversidades(selectedCountry)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+    }
+
 }

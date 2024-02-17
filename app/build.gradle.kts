@@ -58,5 +58,6 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
     kapt("androidx.room:room-compiler:2.6.1")
 }

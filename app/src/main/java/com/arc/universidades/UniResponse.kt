@@ -11,5 +11,7 @@ data class Universidad(
     @SerializedName("state-province")var stateProvince: String?,
     @SerializedName("alpha_two_code")var alphaCode: String,
     @SerializedName("web_pages") var webPages: List<String>,
-    var domains: List<String>
+    var domains: List<String>,
+    val latitud: Double,
+    val longitud: Double
 ) : Serializable
