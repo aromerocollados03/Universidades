@@ -38,7 +38,6 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     private fun validarCampos(username: String, password: String, email: String): Boolean {
-        // Aquí puedes añadir más lógica de validación si es necesario
         return username.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()
     }
 

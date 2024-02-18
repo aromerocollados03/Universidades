@@ -41,7 +41,7 @@ class DatosUniversidad : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("SetTextI18n")
     private fun updateViews(binding: ActivityDatosUniversidadBinding, universidad: Universidad) {
         with(binding) {
-            tvNombreUniversidad.text = "Nombre: ${universidad.name}"
+            tvNombreUniversidad.text = universidad.name
             tvPais.text = "País: ${universidad.country}"
             tvEstado.text = "Estado: ${universidad.stateProvince ?: "N/A"}"
             tvAlphaCode.text = "Código Alfa: ${universidad.alphaCode}"

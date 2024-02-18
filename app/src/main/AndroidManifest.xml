@@ -38,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".DatosUniversidad"
             android:exported="false" />

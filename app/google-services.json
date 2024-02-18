@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "849935811954",
+    "project_id": "pmul-6bb6b",
+    "storage_bucket": "pmul-6bb6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849935811954:android:a3eba66dbe4eec443509eb",
+        "android_client_info": {
+          "package_name": "com.arc.universidades"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849935811954-a2iu4dtn2tafkpkc6224r6cva101fmu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arc.universidades",
+            "certificate_hash": "2145a6da29e60bbfa8ac3b120e88de526698d6cd"
+          }
+        },
+        {
+          "client_id": "849935811954-1dvhbdsj1v9mtssciil1iho5cb9ffmcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9kgezbk4dbvRAwNcNks09-gJmm-ghDcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849935811954-1dvhbdsj1v9mtssciil1iho5cb9ffmcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

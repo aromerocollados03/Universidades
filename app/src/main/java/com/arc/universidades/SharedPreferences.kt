@@ -20,7 +20,6 @@ class SharedPreferences : AppCompatActivity() {
     @SuppressLint("MissingInflatedId", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        aplicarTema()
         setContentView(R.layout.activity_shared_preferences)
 
         tvDato = findViewById(R.id.tvDato)
@@ -59,56 +58,25 @@ class SharedPreferences : AppCompatActivity() {
         editor.apply()
     }
 
-    private fun aplicarTema() {
-        val pref = getSharedPreferences("prefs", MODE_PRIVATE)
-        if (pref.getBoolean("modoOscuro", false)) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-    }
-
-    private fun cambiarTema(modoOscuro: Boolean) {
-        val editor = getSharedPreferences("prefs", MODE_PRIVATE).edit()
-        editor.putBoolean("modoOscuro", modoOscuro)
-        editor.apply()
-
-        // Reaplica el tema
-        if (modoOscuro) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-    }
-
-    private fun esModoOscuroActivado(): Boolean {
-        val pref = getSharedPreferences("prefs", MODE_PRIVATE)
-        return pref.getBoolean("modoOscuro", false)
-    }
-
     private fun inicializarSpinnerColor() {
-        val colores = listOf("Rojo", "Verde", "Azul", "Amarillo", "Naranja")
+        val colores = listOf("Rojo", "Verde", "Azul", "Amarillo", "Naranja", "Blanco", "Negro", "Morado", "Gris")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, colores)
         spinnerColorFavorito.adapter = adapter
 
         spinnerColorFavorito.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // El parámetro 'view' ahora es nullable (View?), lo que permite manejar situaciones donde puede ser nulo
                 val colorSeleccionado = parent.getItemAtPosition(position).toString()
                 guardarPreferenciaColor(colorSeleccionado)
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Opcional: Manejar ningún elemento seleccionado
-            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
     private fun cargarPreferencias() {
         val pref = getSharedPreferences("prefs", MODE_PRIVATE)
-        val colorFavorito = pref.getString("colorFavorito", "Rojo") // Valor por defecto: Rojo
+        val colorFavorito = pref.getString("colorFavorito", "Rojo")
         spinnerColorFavorito.setSelection((spinnerColorFavorito.adapter as ArrayAdapter<String>).getPosition(colorFavorito))
-        // Asegúrate de cargar también las otras preferencias
     }
 
     private fun guardarPreferenciaColor(color: String) {

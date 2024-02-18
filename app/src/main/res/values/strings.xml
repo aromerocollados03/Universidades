@@ -10,6 +10,7 @@
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">LOGIN</string>
+    <string name="default_web_client_id">849935811954-1dvhbdsj1v9mtssciil1iho5cb9ffmcv.apps.googleusercontent.com</string>
 
     <string-array name="paises">
         <item>Australia</item>

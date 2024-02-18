@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arc.universidades.databinding.ActivityMainBinding
@@ -14,8 +13,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -94,12 +91,9 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         }
     }
 
-
     private fun showError() {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
     }
-
-
 
     private fun showError(message: String = "Ha ocurrido un error") {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -144,5 +138,4 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
-
 }
